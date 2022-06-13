@@ -21,10 +21,12 @@ public class Command {
 			manager(0);
 			hack=null;
 			setting=null;
-			value=-4321;
+			value=-1;
 			return 1;
 		}).then(ClientCommandManager.argument("hack", StringArgumentType.string()).executes(ctx -> {
 			hack = StringArgumentType.getString(ctx, "hack");
+			setting = null;
+			value = -1;
 			manager(1);
 			return 1;
 		}).then(ClientCommandManager.argument("setting", StringArgumentType.string()).executes(ctx -> {
@@ -69,7 +71,7 @@ public class Command {
 	
 	public static void sendMessage(String msg) {
 		MinecraftClient mc = MinecraftClient.getInstance();
-		String[] msgs = msg.split("\n");
+		String[] msgs = msg.split("\\\\r?\\\\n|\\\\r");
 		for (int i = 0; i < msgs.length; i++) {
 			mc.inGameHud.addChatMessage(MessageType.SYSTEM,new LiteralText(msgs[i]), mc.player.getUuid());
 		}

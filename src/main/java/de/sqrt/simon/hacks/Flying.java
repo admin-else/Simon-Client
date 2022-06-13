@@ -9,13 +9,13 @@ import net.minecraft.util.math.Vec3d;
 public class Flying extends Hack {
 
 	public Flying(String name) {
-		super("fly");
+		super("fly","Makes you go weeeeeeeee!");
 	}
 
 	MinecraftClient client = MinecraftClient.getInstance();
 	static double acceleration = 0.1;
 
-	public void tick() {
+	public void accelerates() {
 		if (client.player != null && isEnabled()) {
 
 			int toggle = 0;
@@ -75,24 +75,5 @@ public class Flying extends Hack {
 
 		}
 
-	}
-	
-	public String interact(String setting,double value) {
-		if(setting != null) {
-			switch (setting) {
-			case "enable":{
-				setEnabled(true);
-				return "Enabled flying.";
-			}
-			case "disenable":{
-				setEnabled(false);
-				return "Disenabled flying ):";
-			}
-
-			default:
-				return "There is no setting called "+setting;
-			}
-		}else return "Fly Hack is cool!/n"
-				+ "just try it (:";
 	}
 }
